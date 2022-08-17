@@ -5,8 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import { Router } from 'react-router';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import Home from './pages/home/home';
 import LatestNews from './pages/latest-news/latest-news';
@@ -21,15 +20,9 @@ root.render(
       <Router history={history}>
         <App>
           <Routes>
-            <Route path="/">
-              <Home />
-            </Route>
-            <Route path="/popular-news">
-              <LatestNews />
-            </Route>
-            <Route path="/latest-news">
-              <PopularNews />
-            </Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/popular-news" element={<LatestNews />} />
+            <Route path="/latest-news" element={<PopularNews />} />
           </Routes>
         </App>
       </Router>
