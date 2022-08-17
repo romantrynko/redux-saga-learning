@@ -1,7 +1,7 @@
 import {
   SET_LATEST_NEWS_ERROR,
   SET_POPULAR_NEWS_ERROR
-} from './constants';
+} from '../constants';
 
 const initialState = {
   latestNewsError: '',

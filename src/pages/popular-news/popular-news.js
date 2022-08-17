@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import News from '../../components/news/News';
-import { GET_POPULAR_NEWS } from '../../redux/reducers/constants';
+import { GET_POPULAR_NEWS } from '../../redux/constants';
 
 const PopularNews = () => {
   const { popularNews } = useSelector((store) => store?.news || {});

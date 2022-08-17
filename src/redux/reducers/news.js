@@ -1,4 +1,4 @@
-import { SET_LATEST_NEWS, SET_POPULAR_NEWS } from './constants';
+import { SET_LATEST_NEWS, SET_POPULAR_NEWS } from '../constants';
 
 const initialState = {
   latestNews: [],

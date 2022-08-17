@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import News from '../../components/news/News';
-import { GET_LATEST_NEWS } from '../../redux/reducers/constants';
+import { GET_LATEST_NEWS } from '../../redux/constants';
 
 const LatestNews = () => {
   const { latestNews } = useSelector((store) => store?.news || {});
