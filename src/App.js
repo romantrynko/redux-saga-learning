@@ -5,6 +5,12 @@ import { getNews } from './redux/actions/actionCreator';
 const App = () => {
   const latestNews = useSelector((store) => store?.news?.latestNews || []);
   const popularNews = useSelector((store) => store?.news?.popularNews || []);
+  const latestNewsError = useSelector(
+    (store) => store?.errors?.latestNewsError || ''
+  );
+  const popularNewsError = useSelector(
+    (store) => store?.errors?.popularNewsError || ''
+  );
   const dispatch = useDispatch();
 
   const handleNews = () => {
@@ -14,8 +20,8 @@ const App = () => {
   return (
     <div>
       <button onClick={handleNews}>Get news</button>
-      <News news={latestNews} title="Latest News" />
-      <News news={popularNews} title="Popular News" />
+      <News news={latestNews} title="Latest News" error={latestNewsError} />
+      <News news={popularNews} title="Popular News" error={popularNewsError} />
     </div>
   );
 };
