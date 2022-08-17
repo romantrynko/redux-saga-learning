@@ -1,15 +1,15 @@
 import {
-  take,
+  // take,
   takeEvery,
-  takeLatest,
-  takeLeading,
+  // takeLatest,
+  // takeLeading,
   put,
   call,
-  select,
-  fork,
-  all,
-  race,
-  spawn
+  // select,
+  fork
+  // all,
+  // race,
+  // spawn
 } from 'redux-saga/effects';
 import { getLatestNews, getPopularNews } from '../../api';
 import { setLatestNews, setPopularNews } from '../actions/actionCreator';
