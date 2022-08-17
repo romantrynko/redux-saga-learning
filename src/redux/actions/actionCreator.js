@@ -1,5 +1,4 @@
 import {
-  GET_NEWS,
   SET_LATEST_NEWS,
   SET_POPULAR_NEWS
 } from '../reducers/constants';
@@ -13,8 +12,3 @@ export const setPopularNews = (payload) => ({
   type: SET_POPULAR_NEWS,
   payload
 });
-
-export const getNews = () => ({
-  type: GET_NEWS
-});
-

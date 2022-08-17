@@ -9,7 +9,7 @@ const News = ({ news, title, error }) => {
     <div>
       <h2>{`${title}:`}</h2>
       <ul className="news-list">
-        {news[0].map(
+        {news.map(
           ({
             objectID,
             url,

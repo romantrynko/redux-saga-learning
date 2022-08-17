@@ -6,7 +6,9 @@ import {
   put,
   call,
   // select,
-  fork
+  fork,
+  take,
+  all
   // all,
   // race,
   // spawn
@@ -14,7 +16,8 @@ import {
 import { getLatestNews, getPopularNews } from '../../api';
 import { setLatestNews, setPopularNews } from '../actions/actionCreator';
 import {
-  GET_NEWS,
+  GET_LATEST_NEWS,
+  GET_POPULAR_NEWS,
   SET_LATEST_NEWS_ERROR,
   SET_POPULAR_NEWS_ERROR
 } from '../reducers/constants';
@@ -43,17 +46,25 @@ export function* handlePopularNews() {
   }
 }
 
-export function* handleNews() {
-  yield fork(handleLatestNews);
-  yield fork(handlePopularNews);
-  // yield all([call(handleLatestNews), call(handlePopularNews)]);
-  // yield race([call(handleLatestNews), call(handlePopularNews)]);
+// export function* handleNews() {
+//   yield fork(handleLatestNews);
+//   yield fork(handlePopularNews);
+//   // yield all([call(handleLatestNews), call(handlePopularNews)]);
+//   // yield race([call(handleLatestNews), call(handlePopularNews)]);
+// }
+
+export function* watchPopularNews() {
+  yield takeEvery(GET_POPULAR_NEWS, handlePopularNews);
 }
 
-export function* watchClickSaga() {
-  yield takeEvery(GET_NEWS, handleNews);
+export function* watchLatestNews() {
+  yield takeEvery(GET_LATEST_NEWS, handleLatestNews);
 }
+
+// export function* watchClickSaga() {
+//   // yield takeEvery(GET_NEWS, handleNews);
+// }
 
 export default function* rootSaga() {
-  yield watchClickSaga();
+  yield all([fork(watchPopularNews), fork(watchLatestNews)]);
 }
