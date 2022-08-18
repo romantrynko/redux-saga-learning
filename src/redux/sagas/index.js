@@ -8,19 +8,17 @@ import {
   // select,
   fork,
   take,
-  all
+  all,
+  select,
+  takeLatest
   // all,
   // race,
   // spawn
 } from 'redux-saga/effects';
 import { getLatestNews, getPopularNews } from '../../api';
 import { setLatestNews, setPopularNews } from '../actions/actionCreator';
-import {
-  GET_LATEST_NEWS,
-  GET_POPULAR_NEWS,
-  SET_LATEST_NEWS_ERROR,
-  SET_POPULAR_NEWS_ERROR
-} from '../constants';
+import { LOCATION_CHANGE } from 'connected-react-router';
+import { SET_LATEST_NEWS_ERROR, SET_POPULAR_NEWS_ERROR } from '../constants';
 
 export function* handleLatestNews() {
   try {
@@ -46,14 +44,28 @@ export function* handlePopularNews() {
   }
 }
 
-export function* watchPopularNews() {
-  yield takeEvery(GET_POPULAR_NEWS, handlePopularNews);
-}
+export function* watchNewsSaga() {
+  const path = yield select(({ router }) => router.location.pathname);
+  // switch (path) {
+  //   case '/popular-news':
+  //     yield call(handlePopularNews);
+  //     break;
 
-export function* watchLatestNews() {
-  yield takeEvery(GET_LATEST_NEWS, handleLatestNews);
+  //   case '/latest-news':
+  //     yield call(handleLatestNews);
+  //     break;
+
+  //   default:
+  //     break;
+  // }
+  if (path === '/popular-news') {
+    yield call(handlePopularNews);
+  }
+  if (path === '/latest-news') {
+    yield call(handleLatestNews);
+  }
 }
 
 export default function* rootSaga() {
-  yield all([fork(watchPopularNews), fork(watchLatestNews)]);
+  yield takeLatest(LOCATION_CHANGE, watchNewsSaga);
 }

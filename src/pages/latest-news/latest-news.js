@@ -1,16 +1,9 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import News from '../../components/news/News';
-import { GET_LATEST_NEWS } from '../../redux/constants';
 
 const LatestNews = () => {
   const { latestNews } = useSelector((store) => store?.news || {});
   const { latestNewsError } = useSelector((store) => store?.errors || {});
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch({ type: GET_LATEST_NEWS });
-  }, [dispatch]);
 
   return (
     <div>

@@ -10,7 +10,6 @@ import Home from './pages/home/home';
 import LatestNews from './pages/latest-news/latest-news';
 import PopularNews from './pages/popular-news/popular-news';
 import { history } from './redux/reducers';
-import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
