@@ -1,14 +1,14 @@
 import {
   // take,
-  takeEvery,
+  // takeEvery,
   // takeLatest,
   // takeLeading,
   put,
   call,
   // select,
-  fork,
-  take,
-  all,
+  // fork,
+  // take,
+  // all,
   select,
   takeLatest
   // all,
