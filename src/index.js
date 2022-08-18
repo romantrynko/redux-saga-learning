@@ -5,27 +5,33 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { Switch, Route } from 'react-router-dom';
 import Home from './pages/home/home';
 import LatestNews from './pages/latest-news/latest-news';
 import PopularNews from './pages/popular-news/popular-news';
-
-const history = createBrowserHistory();
+import { history } from './redux/reducers';
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router history={history}>
+      <ConnectedRouter history={history}>
         <App>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/popular-news" element={<LatestNews />} />
-            <Route path="/latest-news" element={<PopularNews />} />
-          </Routes>
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/latest-news" exact>
+              <LatestNews />
+            </Route>
+            <Route path="/popular-news" exact>
+              <PopularNews />
+            </Route>
+          </Switch>
         </App>
-      </Router>
+      </ConnectedRouter>
     </Provider>
   </React.StrictMode>
 );

@@ -8,7 +8,6 @@ const PopularNews = () => {
   const { popularNewsError } = useSelector((store) => store?.errors || {});
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch({ type: GET_POPULAR_NEWS });
   }, [dispatch]);
